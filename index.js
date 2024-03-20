@@ -16,18 +16,15 @@ async function run() {
     for (const cred of data) {
       if (cred.type == "ACR") {
         await acrLogin(cred);
-        await dockerPush(cred);
       }
       if (cred.type == "ECR") {
         await ecrLoginPrivate(cred);
-        await dockerPush(cred);
       }
       if (cred.type == "GCP") {
         await setupGcpArtifactRegistry(cred);
       }
       if (cred.type == "DOCKER_HUB") {
         await dockerHubLogin(cred);
-        await dockerPush(cred);
       }
     }
   } catch (error) {
